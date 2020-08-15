@@ -33,25 +33,25 @@ def predict_image():
     print(request.files)
 
     imgData = request.files['image']
+   
 
-    
+    img=Image.open(imgData)
 
-    # img=Image.open(request.files['image'])
+    img = img.resize((150,150))
 
-    # img = img.resize((150,150))
-
-    print(imgData)
+    #print(imgData)
 
     # img = load_img(img, target_size=(150, 150))
 
-    # img = img_to_array(img)
+    img = img_to_array(img)
 
-    # img = np.expand_dims(img, axis=0)
+    img = np.expand_dims(img, axis=0)
 
-    # classes = str(model.predict_classes(img, batch_size=10))
+    classes = str(model.predict_classes(img, batch_size=10))
 
-    # return classes
+    return classes
 
 if __name__ == '__main__':
 
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)
+
